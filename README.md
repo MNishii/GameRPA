@@ -3,7 +3,7 @@
 マウスの現在位置を取得
 https://laboratory.kazuuu.net/get-current-position-of-mouse-using-pyautogui-module/
 
-天鳳を開く
+Pyautogui
 https://prcmyself.com/i-have-compiled-a-list-of-libraries-required-to-make-my-own-rpa-so-i-will-actually-move-it
 
 pyautogui でのマウス操作
