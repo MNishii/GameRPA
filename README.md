@@ -11,8 +11,6 @@ https://qiita.com/konitech913/items/301bb63c8a69c3fcb1bd
 
 
 Pythonのscheduleライブラリでジョブ実行時に引数を渡す
-Pythonのscheduleライブラリがスクリプトの定期実行になかなか便利なのですが、実行するジョブの中に引数を入れたい場合、通常の感覚とちょっと違うやり方だったので書いておきます。
-
 https://qiita.com/sho0405/items/b5fa94cc373c725794b1
 
 Combination
