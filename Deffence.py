@@ -717,7 +717,7 @@ class D_Execusion():
                         if self.l_ReachPiece != []:
                             self.ReachBox.append(self.l_ReachPiece[0])
 
-                self.r_attack, self.c_attack, self.l_attack = D.SituationCheck(0.85)
+                self.r_attack, self.c_attack, self.l_attack = D.SituationCheck(0.85, self.Dora)
 
                 if self.r_attack != [] and self.Alert == []:
                     print('下家-聴牌気配')
@@ -1198,7 +1198,7 @@ class D_Execusion():
         
         return UpdateRight, UpdateCenter, UpdateLeft, self.ReachBox
 
-    def SituationCheck(self, conf):
+    def SituationCheck(self, conf, dora):
         # 他家の鳴き状況
         s_rC1 = pg.locateOnScreen("./img_web/r_Corner1.png", confidence=conf)
         s_rC2 = pg.locateOnScreen("./img_web/r_Corner2.png", region = (1016, 384, 102, 146), confidence=conf)
@@ -1206,24 +1206,37 @@ class D_Execusion():
         s_cC2 = pg.locateOnScreen("./img_web/c_Corner2.png", region = (341, 50, 238, 106), confidence=conf)
         s_lC1 = pg.locateOnScreen("./img_web/l_Corner1.png", confidence=conf)
         s_lC2 = pg.locateOnScreen("./img_web/l_Corner2.png", region = (11, 450, 104, 132), confidence=conf)
-        # if s_rC1 != None:
-        #     print('下家-面前')
         if s_rC1 == None and s_rC2 != None:
             print('下家 1 鳴き')
+            # ドラポンの確認用
+            if dora != []:
+                s_rC1_dora = pg.locateOnScreen("./img_web/r_" + dora[0] +  ".png", region = (981, 61, 138, 323), confidence=conf)
+                if s_rC1_dora != None:
+                    if len(BoxValue_D(s_rC1_dora)) >= 2:
+                        print('下家ドラポン')
+                        self.r_attack.append(1)
         if s_rC1 == None and s_rC2 == None:
             print('下家 2 鳴き')
             self.r_attack.append(1)
-        # if s_cC1 != None:
-        #     print('対面-面前')
         if s_cC1 == None and s_cC2 != None:
-            print('対面 1 鳴き')
+            if dora != []:
+                print('対面 1 鳴き')
+                s_cC1_dora = pg.locateOnScreen("./img_web/c_" + dora[0] +  ".png", region = (69, 63, 264, 106), confidence=conf)
+                if s_cC1_dora != None:
+                    if len(BoxValue_D(s_cC1_dora)) >= 2:
+                        print('対面ドラポン')
+                        self.c_attack.append(1)
         if s_cC1 == None and s_cC2 == None:
             print('対面 2 鳴き')
             self.c_attack.append(1)
-        # if s_lC1 != None:
-        #     print('上家-面前')
         if s_lC1 == None and s_lC2 != None:
             print('上家 1 鳴き')
+            if dora != []:
+                s_lC1_dora = pg.locateOnScreen("./img_web/l_" + dora[0] +  ".png", region = (13, 571, 120, 226), confidence=conf)
+                if s_lC1_dora != None:
+                    if len(BoxValue_D(s_lC1_dora)) >= 2:
+                        print('対面ドラポン')
+                        self.l_attack.append(1)
         if s_lC1 == None and s_lC2 == None:
             print('上家 2 鳴き')
             self.l_attack.append(1)
